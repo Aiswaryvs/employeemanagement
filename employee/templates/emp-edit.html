@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+
+
+            {%if messages%}
+            {%for msg in messages%}
+
+
+            {%if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>HEY!</strong> {{msg}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <!--            <div class="bg-info text-dark">-->
+            <!--                {{msg}}-->
+            <!--            </div>-->
+            {%endif%}
+            {%if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>HEY!</strong>{{msg}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+<!--            <div class="bg-danger text-white">-->
+<!--                {{msg}}-->
+<!--            </div>-->
+            {%endif%}
+            {%endfor%}
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form action="" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                {{form.as_p}}
+                <div class="mb3">
+                    <input type="submit">
+                </div>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+</div>
+{%endblock%}

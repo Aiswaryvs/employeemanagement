@@ -1,0 +1,57 @@
+create orm
+1. create()
+.....................
+Employee.objects.create(eid="emp_1004",employee_name="Shyam",
+designation="tester",
+email="shyam@gmail.com",salary=25000,experience=1)
+
+Employee.objects.create(eid="emp_1001",employee_name="Aishu",
+designation="developer",
+email="aishu@gmail.com",salary=50000,experience=2)
+
+2. all()
+.............................
+qs=Employee.objects.all()
+
+3.filter
+........................
+qs=Employee.objects.filter(designation="developer")
+print(qs)
+print(qs.query)
+for em in qs:
+    print(em.eid,em.employee_name,em.salary)
+
+qs=Employee.objects.filter(salary__lte=30000)
+qs=Employee.objects.filter(salary__gt=50000)
+
+
+qs=Employee.objects.all().exclude(designation="developer")
+
+
+qs=Employee.objects.filter(designation="developer",salary__gt=30000)
+
+
+4. get()
+...................
+qs=Employee.objects.get(eid="emp_1001")
+qs.salary
+qs.email etc
+
+Edit
+.......................
+qs=Employee.objects.get(eid="emp_1003")
+qs.experience=2
+qs.save()
+
+delete
+......................
+qs=Employee.objects.get(eid="emp_1000")
+qs.delete()
+
+__iexact
+........................
+qs=Employee.objects.filter(designation__iexact="developer")
+
+__icontains
+.......................
+qs=Employee.objects.filter(employee_name__icontains="da")
